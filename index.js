@@ -19,8 +19,8 @@ app.set("views",path.resolve("./views"));
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser()); 
 app.use(checkForAuthenticationCookie("token"));
+// app.use(express.static("public"));
 app.use(express.static(path.resolve('./public')));
-
 
 app.use("/user",userRoute);
 app.use("/blog",blogRoute);
@@ -30,7 +30,7 @@ app.get("/",async(req,res)=>{
      res.render("home",{
           user: req.user,
           blogs: allBlogs,
-     });
+     }); 
 })
 
 app.listen(PORT,()=>{
